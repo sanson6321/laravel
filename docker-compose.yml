@@ -1,0 +1,42 @@
+version: "3.9"
+volumes:
+  db-store:
+  vendor-store:
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    ports:
+      - 9003:9003
+    volumes:
+      - .:/var/www/html
+      - vendor-store:/var/www/html/vendor
+    working_dir: /var/www/html
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - type: bind
+        source: .
+        target: /var/www/html
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    ports:
+      - 3306:3306
+    volumes:
+      - type: volume
+        source: db-store
+        target: /var/lib/mysql
+        volume:
+          nocopy: true
+    environment:
+      - MYSQL_DATABASE=laravel-template
+      - MYSQL_USER=phper
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret

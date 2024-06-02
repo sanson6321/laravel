@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+:root {
+    --color-base-bg: #f6f6f6;
+    --color-base-font: rgb(0 0 0 / 87%);
+    --color-white: #fff;
+    --color-black: #000;
+    --color-gray: #ccc;
+    --color-lightgray: #efefef;
+    --color-blue: #328dad;
+    --color-red: #db7f7f;
+    --color-yellow: #ecd899;
+    --color-green: #429546;
+    --color-orange: #e7653c;
+    --color-navy: #1b3a57;
+    --font-size-base: 1.25rem;
+    --font-size-small: 1rem;
+    --font-size-middle: 1.5rem;
+    --font-size-large: 2rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: var(--color-base-bg);
+}
+body {
+    padding: 1rem 2rem;
+    color: var(--color-base-font);
+    font-size: var(--font-size-base);
+}
+h1 {
+    padding: 1rem;
+    font-size: var(--font-size-large);
+}
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+table thead tr {
+    background: var(--color-blue);
+    color: var(--color-white);
+}
+table tbody tr:nth-child(even) {
+    background: var(--color-lightgray);
+}
+table thead tr th,
+table tbody tr td {
+    padding: 0.5rem;
+}
+table tbody tr td.text-center {
+    text-align: center;
+}

@@ -5,3 +5,15 @@
     background: var(--color-white);
     border-radius: 0.5rem;
 }
+
+.search-form {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+.search-form > div {
+    width: 250px;
+}
+.search-form > button {
+    margin-top: auto;
+}

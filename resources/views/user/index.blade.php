@@ -7,8 +7,13 @@
     <h1>{{ 'ユーザ' }}</h1>
     <div class="user-table">
         <form action="{{ route('user') }}" method="GET">
-            <input type="text" name="name" value="{{ old('name') }}" />
-            <button type="submit">{{ '検索' }}</button>
+            <div class="search-form">
+                <div>
+                    <p>{{ '名前' }}</p>
+                    <input type="text" name="name" value="{{ old('name') }}" />
+                </div>
+                <button type="submit" class="bg-blue">{{ '検索' }}</button>
+            </div>
         </form>
         <table>
             <thead>

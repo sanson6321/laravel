@@ -8,10 +8,12 @@ RUN apt-get update && apt-get install -y \
 	zip \
 	unzip \
   && docker-php-ext-install pdo_mysql \
+	opcache \
   && pecl install xdebug \
   && docker-php-ext-enable xdebug
 
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /var/www/html
 
+WORKDIR /var/www/html
 RUN composer install

@@ -13,6 +13,7 @@
                     <input type="text" name="name" value="{{ old('name') }}" />
                 </div>
                 <button type="submit" class="bg-blue">{{ '検索' }}</button>
+                <button type="button" class="bg-blue modal-open">{{ '開く' }}</button>
             </div>
         </form>
         <table>
@@ -62,4 +63,28 @@
             </tbody>
         </table>
     </div>
+    <div id="edit" class="modal">
+        <div class="modal-layout">
+            <div class="modal-content">
+                <div class="modal-title">
+                    <p>{{ 'ユーザ編集' }}</p>
+                    <a>
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <p>aaaaa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('js')
+    <script>
+        $(function() {
+            $('.modal-open').on('click', function() {
+                openModal('edit');
+            });
+        })
+    </script>
 @endsection

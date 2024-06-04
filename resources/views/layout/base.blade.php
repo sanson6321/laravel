@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <!-- stylesheet -->
     <link rel="stylesheet" href="{{ FormatAsset::asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ FormatAsset::asset('css/modal.css') }}">
     @yield('css')
     <!-- /stylesheet -->
     <!-- fontawesome -->
@@ -19,6 +20,7 @@
     <!-- javascript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ FormatAsset::asset('js/common.js') }}"></script>
+    <script src="{{ FormatAsset::asset('js/modal.js') }}"></script>
     <!-- /javascript -->
 </head>
 

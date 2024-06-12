@@ -30,4 +30,30 @@ class UserController extends Controller
         ];
         return view('user.index', $data);
     }
+
+    public function edit(Request $request)
+    {
+        $id = $request->input('id');
+
+        $user = $this->user->find($id);
+
+        $data = [
+            'user' => $user,
+        ];
+        return view('user.edit', $data);
+    }
+
+    public function upsert(Request $request)
+    {
+        $input = $request->validate([
+            'id' => '',
+            'updated_no' => '',
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = $this->user->upsert($input);
+
+        return response()->json($user);
+    }
 }

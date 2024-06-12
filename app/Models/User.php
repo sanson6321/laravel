@@ -73,4 +73,20 @@ class User extends Authenticatable
 
         return $builder->get();
     }
+
+    /**
+     * 作成または更新
+     * 
+     * @param  array  $data
+     */
+    public function upsert(array $data)
+    {
+        if (isset($data['id'])) {
+            $model = $this->find($data['id']);
+            $model->update($data);
+        } else {
+        }
+
+        return $model;
+    }
 }

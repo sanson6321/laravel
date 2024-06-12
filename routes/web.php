@@ -21,3 +21,5 @@ Route::get('/info', function () {
     return phpinfo();
 });
 Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::post('/user/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::post('/user/upsert', [UserController::class, 'upsert'])->name('user.upsert');

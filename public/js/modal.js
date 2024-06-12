@@ -17,7 +17,12 @@ const closeModal = (id) => {
 };
 
 $(function () {
-    $(".modal-layout").on("click", function (e) {
+    var target = null;
+    $(".modal-layout").on("mousedown", function (e) {
+        target = e.target;
+    });
+    $(".modal-layout").on("mouseup", function (e) {
+        if (e.target !== target) return;
         if (e.target !== e.currentTarget) return;
         closeModal($(this).parent()[0].id);
     });

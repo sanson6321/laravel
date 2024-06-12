@@ -1,19 +1,18 @@
 @extends('layout.base')
-@section('title', 'ユーザ')
+@section('title', 'ユーザ一覧')
 @section('css')
     <link rel="stylesheet" href="{{ FormatAsset::asset('css/user.css') }}">
 @endsection
 @section('content')
-    <h1>{{ 'ユーザ' }}</h1>
+    <h1>{{ 'ユーザ一覧' }}</h1>
     <div class="user-table">
         <form action="{{ route('user') }}" method="GET">
-            <div class="search-form">
+            <div class="form-search">
                 <div>
                     <p>{{ '名前' }}</p>
                     <input type="text" name="name" value="{{ old('name') }}" />
                 </div>
                 <button type="submit" class="bg-blue">{{ '検索' }}</button>
-                <button type="button" class="bg-blue modal-open">{{ '開く' }}</button>
             </div>
         </form>
         <table>
@@ -55,7 +54,12 @@
             <tbody>
                 @foreach ($userList as $user)
                     <tr>
-                        <td class="text-center">{{ $user->id }}</td>
+                        <td class="text-center">
+                            <a class="modal-open" data-id={{ $user->id }}>
+                                {{ $user->id }}
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </td>
                         <td class="text-center">{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                     </tr>
@@ -68,12 +72,12 @@
             <div class="modal-content">
                 <div class="modal-title">
                     <p>{{ 'ユーザ編集' }}</p>
-                    <a>
+                    <a class="modal-close">
                         <i class="fa-solid fa-xmark"></i>
                     </a>
                 </div>
                 <div class="modal-body">
-                    <p>aaaaa</p>
+                    <form id="form-edit"></form>
                 </div>
             </div>
         </div>
@@ -83,7 +87,25 @@
     <script>
         $(function() {
             $('.modal-open').on('click', function() {
-                openModal('edit');
+                $('#form-edit').empty();
+                const deferred = ajaxRender("{{ route('user.edit') }}", {
+                    id: $(this).data('id')
+                });
+                deferred.done(function(data) {
+                    openModal('edit');
+                    $('#form-edit').html(data);
+                });
+            });
+            $('.modal-close').on('click', function() {
+                closeModal('edit');
+            });
+            $('#form-edit').submit(function() {
+                $(this).addClass('form-loading');
+                const deferred = ajaxAction("{{ route('user.upsert') }}", $(this).serialize());
+                deferred.done(function(data) {
+                    console.log(data);
+                });
+                return false;
             });
         })
     </script>

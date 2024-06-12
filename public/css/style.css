@@ -52,6 +52,7 @@ select {
     padding: 0 0.5rem;
     border: 1px solid var(--color-gray);
     border-radius: 0.25rem;
+    box-sizing: border-box;
 }
 input:disabled,
 select:disabled {
@@ -61,13 +62,17 @@ input:focus,
 select:focus {
     outline-color: var(--color-blue);
 }
-input.error,
-select.error {
+input.form-error,
+select.form-error {
     border-color: var(--color-red);
+}
+label.feedback {
+    color: var(--color-red);
+    font-size: var(--font-size-small);
 }
 
 button {
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 1rem;
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;

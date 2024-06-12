@@ -6,14 +6,30 @@
     border-radius: 0.5rem;
 }
 
-.search-form {
+.form-search {
     display: flex;
     gap: 2rem;
     margin-bottom: 1rem;
 }
-.search-form > div {
+.form-search > div {
     width: 250px;
 }
-.search-form > button {
+.form-search > button {
     margin-top: auto;
+}
+
+a.modal-open {
+    color: var(--color-blue);
+    text-decoration: underline;
+}
+
+.form-group {
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.form-group button {
+    margin-top: 1rem;
+    margin-left: auto;
 }

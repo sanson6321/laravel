@@ -10,7 +10,7 @@
             <div class="form-search">
                 <div>
                     <p>{{ '名前' }}</p>
-                    <input type="text" name="name" value="{{ old('name') }}" />
+                    <input type="text" name="name" value="{{ request()->query('name') }}" />
                 </div>
                 <button type="submit" class="bg-blue">{{ '検索' }}</button>
             </div>
@@ -102,8 +102,8 @@
             $('#form-edit').submit(function() {
                 $(this).addClass('form-loading');
                 const deferred = ajaxAction("{{ route('user.upsert') }}", $(this).serialize());
-                deferred.done(function(data) {
-                    console.log(data);
+                deferred.done(function() {
+                    location.reload();
                 });
                 return false;
             });

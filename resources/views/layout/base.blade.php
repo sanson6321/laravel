@@ -26,12 +26,9 @@
 
 <body>
     @if (session('message_success'))
-        <div id="toast" @class([
-            'bg_green',
-            'session_toast',
-            'toast' => session('message_error'),
-        ])>
+        <div class="toast toast-succsess">
             <p>{{ session()->pull('message_success') }}</p>
+            <div class="life"></div>
         </div>
     @endif
     @if (session('message_error'))

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -21,7 +22,6 @@ class UserController extends Controller
             'name',
             'order',
         ]);
-        session()->flash('_old_input', $input);
 
         $userList = $this->user->getAll($input);
 
@@ -53,6 +53,16 @@ class UserController extends Controller
         ]);
 
         $user = $this->user->upsert($input);
+
+        DB::beginTransaction();
+        try {
+            $user = $this->user->upsert($input);
+            DB::commit();
+        } catch (\Exception $e) {
+            session()->flash('message_error', $e->getMessage());
+            DB::rollBack();
+        }
+        session()->flash('message_success', '保存しました');
 
         return response()->json($user);
     }

@@ -25,29 +25,23 @@
 </head>
 
 <body>
-    @if (session('message_success'))
-        <div class="toast toast-succsess">
-            <p>{{ session()->pull('message_success') }}</p>
+    <div id="toast">
+        @if (session('message_success'))
+            <div class="toast toast-succsess">
+                <p>{{ session()->pull('message_success') }}</p>
+                <div class="life"></div>
+            </div>
+        @endif
+        @if (session('message_error'))
+            <div class="toast toast-error">
+                <p>{{ session()->pull('message_error') }}</p>
+                <div class="life"></div>
+            </div>
+        @endif
+        <div class="toast toast-error toast-ajax" style="display: none">
+            <p id="message-error"></p>
             <div class="life"></div>
         </div>
-    @endif
-    @if (session('message_error'))
-        <div id="toast" class="bg_red session_toast">
-            <p>{{ session()->pull('message_error') }}</p>
-        </div>
-    @endif
-    @if ($errors->isNotEmpty())
-        <div id="toast" class="bg_red session_toast">
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
-    <div id="toast" class="bg_red ajax_toast">
-        <p id="message_error"></p>
-    </div>
-    {{-- Tooltip --}}
-    <div class="description">
     </div>
     @yield('content')
     <!-- javascript -->

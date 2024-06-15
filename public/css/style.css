@@ -86,6 +86,10 @@ button.bg-blue {
     background: var(--color-blue);
     color: var(--color-white);
 }
+button.bg-green {
+    background: var(--color-green);
+    color: var(--color-white);
+}
 
 table {
     width: 100%;
@@ -107,37 +111,55 @@ table tbody tr td.text-center {
     text-align: center;
 }
 
+#toast {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    align-items: flex-end;
+    z-index: 9999;
+}
 .toast {
     visibility: hidden;
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+    margin: 1rem;
     background: var(--color-darkgray);
     color: var(--color-white);
     border-radius: 0.25rem 0.25rem 0;
     animation-name: toast-animation;
-    animation-duration: 3s;
+    animation-duration: 5s;
+}
+.toast:first-child {
+    margin-top: auto;
 }
 .toast > p {
     padding: 1rem 2rem;
 }
-.toast.toast-succsess .life {
+.toast .life {
     height: 5px;
     width: auto;
-    background: var(--color-green);
     animation-name: life-animation;
-    animation-duration: 3s;
+    animation-duration: 5s;
+}
+.toast.toast-succsess .life {
+    background: var(--color-green);
+}
+.toast.toast-error .life {
+    background: var(--color-red);
 }
 
 @keyframes toast-animation {
     0% {
         visibility: visible;
-        bottom: 0;
         opacity: 0;
+        transform: translateX(50px);
     }
     30% {
-        bottom: 1rem;
         opacity: 1;
+        transform: translateX(0);
     }
     95% {
         opacity: 1;

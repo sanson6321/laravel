@@ -1,9 +1,17 @@
 @charset "utf-8";
 
 .user-table {
+    position: relative;
     padding: 2rem;
     background: var(--color-white);
     border-radius: 0.5rem;
+}
+
+.user-create {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 2rem;
 }
 
 .form-search {

@@ -15,6 +15,9 @@
                 <button type="submit" class="bg-blue">{{ '検索' }}</button>
             </div>
         </form>
+        <div class="user-create">
+            <button type="button" class="bg-green modal-open">{{ '新規作成' }}</button>
+        </div>
         <table>
             <thead>
                 <tr>

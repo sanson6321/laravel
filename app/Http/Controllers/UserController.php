@@ -50,17 +50,16 @@ class UserController extends Controller
             'updated_no' => '',
             'name' => 'required',
             'email' => 'required',
+            'password' => '',
         ]);
-
-        $user = $this->user->upsert($input);
 
         DB::beginTransaction();
         try {
             $user = $this->user->upsert($input);
             DB::commit();
         } catch (\Exception $e) {
-            session()->flash('message_error', $e->getMessage());
             DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
         }
         session()->flash('message_success', '保存しました');
 

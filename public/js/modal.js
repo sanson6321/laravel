@@ -4,7 +4,9 @@
  */
 const openModal = (id) => {
     $("#" + id).addClass("show");
-    $("body").addClass("open-modal");
+    if ($("body").height() > $(window).height()) {
+        $("body").addClass("open-modal");
+    }
 };
 
 /**

@@ -121,15 +121,14 @@ var clearFormError = function () {
  */
 var messageError = function (message) {
     if (message === "") {
-        $(".ajax_toast").css("visibility", "hidden");
-        $("#message_error").text("");
+        $(".toast-ajax").hide().css("visibility", "hidden");
+        $("#message-error").text("");
         return;
     }
-    $(".ajax_toast").css("visibility", "visible");
-    $(".ajax_toast").css("top", $(this).scrollTop() + 10 + "px");
-    $("#message_error").text(message);
+    $(".toast-ajax").show().css("visibility", "visible");
+    $("#message-error").text(message);
     setTimeout(function () {
-        $(".ajax_toast").css("visibility", "hidden");
+        $(".toast-ajax").hide().css("visibility", "hidden");
     }, 5000);
     return;
 };

@@ -14,6 +14,23 @@
     padding: 2rem;
 }
 
+.user-detail {
+    display: none;
+    position: relative;
+}
+
+.user-detail-list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+}
+.user-detail-list > a {
+    white-space: nowrap;
+}
+
 .form-search {
     display: flex;
     gap: 2rem;

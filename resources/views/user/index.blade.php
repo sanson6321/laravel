@@ -52,6 +52,7 @@
                             ])></i>
                         </a>
                     </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -65,6 +66,21 @@
                         </td>
                         <td class="text-center">{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>
+                            <a class="user-detail-show">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </a>
+                            <div class="user-detail">
+                                <div class="user-detail-list">
+                                    <a data-id={{ $user->id }}>
+                                        {{ 'パスワード変更' }}
+                                    </a>
+                                    <a data-id={{ $user->id }}>
+                                        {{ '削除' }}
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -109,6 +125,9 @@
                     location.reload();
                 });
                 return false;
+            });
+            $('.user-detail-show').on('click', function() {
+                $(this).next().show();
             });
         })
     </script>

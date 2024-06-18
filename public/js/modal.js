@@ -11,10 +11,9 @@ const openModal = (id) => {
 
 /**
  * モーダルを閉じる
- * @param {string} id
  */
-const closeModal = (id) => {
-    $("#" + id).removeClass("show");
+const closeModal = () => {
+    $(".modal.show").removeClass("show");
     $("body").removeClass("open-modal");
 };
 
@@ -26,6 +25,9 @@ $(function () {
     $(".modal-layout").on("mouseup", function (e) {
         if (e.target !== target) return;
         if (e.target !== e.currentTarget) return;
-        closeModal($(this).parent()[0].id);
+        closeModal();
+    });
+    $(".modal-close").on("click", function () {
+        closeModal();
     });
 });

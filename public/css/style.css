@@ -90,6 +90,14 @@ button.bg-green {
     background: var(--color-green);
     color: var(--color-white);
 }
+button.bg-red {
+    background: var(--color-red);
+    color: var(--color-white);
+}
+button.bg-gray {
+    background: var(--color-gray);
+    color: var(--color-white);
+}
 
 table {
     width: 100%;

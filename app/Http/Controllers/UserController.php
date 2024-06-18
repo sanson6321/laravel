@@ -65,4 +65,22 @@ class UserController extends Controller
 
         return response()->json($user);
     }
+
+    public function delete(Request $request)
+    {
+        $id = $request->input('id');
+
+        DB::beginTransaction();
+        try {
+            $user = $this->user->find($id);
+            $user->delete();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
+        }
+        session()->flash('message_success', '削除しました');
+
+        return response()->json(true);
+    }
 }

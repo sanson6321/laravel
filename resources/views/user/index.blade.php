@@ -67,17 +67,21 @@
                         <td class="text-center">{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
-                            <a class="user-detail-show">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </a>
                             <div class="user-detail">
+                                <a class="user-detail-show">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </a>
                                 <div class="user-detail-list">
-                                    <a data-id={{ $user->id }}>
-                                        {{ 'パスワード変更' }}
-                                    </a>
-                                    <a data-id={{ $user->id }}>
-                                        {{ '削除' }}
-                                    </a>
+                                    <div>
+                                        <a class="password-modal-open" data-id={{ $user->id }}
+                                            data-name={{ $user->name }}>
+                                            {{ 'パスワード変更' }}
+                                        </a>
+                                        <a class="delete-modal-open" data-id={{ $user->id }}
+                                            data-name="{{ $user->name }}">
+                                            {{ '削除' }}
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -101,10 +105,33 @@
             </div>
         </div>
     </div>
+    <div id="delete" class="modal">
+        <div class="modal-layout">
+            <div class="modal-content">
+                <div class="modal-title">
+                    <p id="delete-name"></p>
+                    <a class="modal-close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <p>{{ '削除してもよろしいですか' }}</p>
+                    <form id="form-delete">
+                        <input type="hidden" name="id">
+                        <div class="button-group">
+                            <button type="button" class="bg-gray modal-close">{{ 'キャンセル' }}</button>
+                            <button type="submit" class="bg-red">{{ '削除' }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('js')
     <script>
         $(function() {
+            // 編集モーダル開く
             $('.modal-open').on('click', function() {
                 $('#form-edit').empty();
                 const deferred = ajaxRender("{{ route('user.edit') }}", {
@@ -115,20 +142,41 @@
                     $('#form-edit').html(data);
                 });
             });
-            $('.modal-close').on('click', function() {
-                closeModal('edit');
-            });
+            // 編集実行
             $('#form-edit').submit(function() {
-                $(this).addClass('form-loading');
                 const deferred = ajaxAction("{{ route('user.upsert') }}", $(this).serialize());
                 deferred.done(function() {
                     location.reload();
                 });
                 return false;
             });
+            // 詳細開く
             $('.user-detail-show').on('click', function() {
                 $(this).next().show();
+                setTimeout(() => {
+                    // 別のクリックイベントで同時に発火されるのを防止
+                    document.addEventListener('click', () => {
+                        // 非表示
+                        $(this).next().hide();
+                    }, {
+                        once: true
+                    });
+                }, 100)
             });
+            // 削除モーダル開く
+            $('.delete-modal-open').on('click', function() {
+                $('#form-delete > input[name="id"]').val($(this).data('id'));
+                $("#delete-name").text($(this).data('name'));
+                openModal('delete');
+            });
+            // 削除実行
+            $('#form-delete').submit(function() {
+                const deferred = ajaxAction("{{ route('user.delete') }}", $(this).serialize());
+                deferred.done(function() {
+                    location.reload();
+                });
+                return false;
+            })
         })
     </script>
 @endsection

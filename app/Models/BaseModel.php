@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Log;
  */
 class BaseModel extends Model
 {
+    use SoftDeletes;
+
     /**
      * テーブル名
      */
@@ -152,7 +155,7 @@ class BaseModel extends Model
      * 作成または更新
      * 単一モデルのみ
      * 
-     * @param  array  $data
+     * @param  array  $attributes
      * @return Model
      */
     public function upsert(array $attributes)

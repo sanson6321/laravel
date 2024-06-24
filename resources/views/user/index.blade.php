@@ -39,11 +39,14 @@
                         {{ '名前' }}
                     </th>
                     <th>
+                        {{ 'メールアドレス' }}
+                    </th>
+                    <th>
                         @php
-                            [$active, $order, $parameters] = FormatOrder::get('email');
+                            [$active, $order, $parameters] = FormatOrder::get('updated_at');
                         @endphp
                         <a href="{{ route('user', $parameters) }}">
-                            <span>{{ 'メールアドレス' }}</span>
+                            <span>{{ '更新日時' }}</span>
                             <i @class([
                                 'fa-solid',
                                 'fa-arrow-up' => $active && str_ends_with($order, 'desc'),
@@ -66,6 +69,7 @@
                         </td>
                         <td class="text-center">{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td class="text-center">{{ $user->updated_at->format('Y/m/d H:i') }}</td>
                         <td>
                             <div class="user-detail">
                                 <a class="user-detail-show">

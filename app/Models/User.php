@@ -76,8 +76,20 @@ class User extends BaseModel implements
         }
 
         if (isset($data['order']) && str_contains($data['order'], '_')) {
-            [$column, $order] = explode('_', $data['order']);
-            $builder->orderBy('users.' . $column, $order);
+            if ($data['order'] === 'id_asc') {
+                $builder->orderBy('users.id', 'asc');
+            }
+            if ($data['order'] === 'id_desc') {
+                $builder->orderBy('users.id', 'desc');
+            }
+            if ($data['order'] === 'updated_at_asc') {
+                $builder->orderBy('users.updated_at', 'asc')
+                    ->orderBy('users.id', 'asc');
+            }
+            if ($data['order'] === 'updated_at_desc') {
+                $builder->orderBy('users.updated_at', 'desc')
+                    ->orderBy('users.id', 'asc');
+            }
         }
 
         return $builder->get();

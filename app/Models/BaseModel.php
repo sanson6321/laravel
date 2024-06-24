@@ -154,7 +154,7 @@ class BaseModel extends Model
     /**
      * 作成または更新
      * 単一モデルのみ
-     * 
+     *
      * @param  array  $attributes
      * @return Model
      */

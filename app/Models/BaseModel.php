@@ -48,7 +48,7 @@ class BaseModel extends Model
         }
 
         try {
-            // LogModel::write(LogModel::CREATE_TYPE, $user->id, $user->name, $this->tableName, $attributes, []);
+            LogModel::write(LogModel::CREATE_TYPE, $this->tableName, $attributes, []);
             if ($isMulti) {
                 $dataList = array_chunk($attributes, 300);
                 foreach ($dataList as $data) {
@@ -118,7 +118,7 @@ class BaseModel extends Model
         $attributes = array_merge($attributes, $updatedAttributes);
 
         try {
-            // LogModel::write(LogModel::UPDATE_TYPE, $user->id, $user->name, $this->tableName, $attributes, $this->toArray());
+            LogModel::write(LogModel::UPDATE_TYPE, $this->tableName, $attributes, $this->toArray());
             $isUpdated = parent::update($attributes, $options);
             if ($isUpdated !== true) {
                 throw new \Exception('データを更新できませんでした', 400);
@@ -139,7 +139,7 @@ class BaseModel extends Model
     public function delete()
     {
         try {
-            // LogModel::write(LogModel::DELETE_TYPE, $user->id, $user->name, $this->tableName, [], $this->toArray());
+            LogModel::write(LogModel::DELETE_TYPE, $this->tableName, [], $this->toArray());
             $isDeleted = parent::delete();
             if ($isDeleted !== true) {
                 throw new \Exception('データを削除できませんでした', 400);

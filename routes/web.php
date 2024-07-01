@@ -20,7 +20,9 @@ Route::get('/', function () {
 Route::get('/info', function () {
     return phpinfo();
 });
-Route::get('/user', [UserController::class, 'index'])->name('user');
-Route::post('/user/edit', [UserController::class, 'edit'])->name('user.edit');
-Route::post('/user/upsert', [UserController::class, 'upsert'])->name('user.upsert');
-Route::post('/user/delete', [UserController::class, 'delete'])->name('user.delete');
+Route::prefix('/user')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('user');
+    Route::post('/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::post('/upsert', [UserController::class, 'upsert'])->name('user.upsert');
+    Route::post('/delete', [UserController::class, 'delete'])->name('user.delete');
+});

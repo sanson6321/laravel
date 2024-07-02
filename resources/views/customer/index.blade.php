@@ -1,11 +1,11 @@
 @extends('layout.base')
 @section('title', '顧客一覧')
 @section('css')
-    <link rel="stylesheet" href="{{ FormatAsset::asset('css/user.css') }}">
+    <link rel="stylesheet" href="{{ FormatAsset::asset('css/customer.css') }}">
 @endsection
 @section('content')
     <h1>{{ '顧客一覧' }}</h1>
-    <div class="user-table">
+    <div class="customer-table">
         <form action="{{ route('customer') }}" method="GET">
             <div class="form-search">
                 <div>
@@ -15,7 +15,7 @@
                 <button type="submit" class="bg-blue">{{ '検索' }}</button>
             </div>
         </form>
-        <div class="user-create">
+        <div class="customer-create">
             <button type="button" class="bg-green modal-open">{{ '新規作成' }}</button>
         </div>
         <table>
@@ -25,7 +25,7 @@
                         @php
                             [$active, $order, $parameters] = FormatOrder::get('id');
                         @endphp
-                        <a href="{{ route('user', $parameters) }}">
+                        <a href="{{ route('customer', $parameters) }}">
                             <span>{{ 'ID' }}</span>
                             <i @class([
                                 'fa-solid',
@@ -45,7 +45,7 @@
                         @php
                             [$active, $order, $parameters] = FormatOrder::get('updated_at');
                         @endphp
-                        <a href="{{ route('user', $parameters) }}">
+                        <a href="{{ route('customer', $parameters) }}">
                             <span>{{ '更新日時' }}</span>
                             <i @class([
                                 'fa-solid',
@@ -71,11 +71,11 @@
                         <td>{{ $customer->email }}</td>
                         <td class="text-center">{{ $customer->updated_at->format('Y/m/d H:i') }}</td>
                         <td>
-                            <div class="user-detail">
-                                <a class="user-detail-show">
+                            <div class="customer-detail">
+                                <a class="customer-detail-show">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
                                 </a>
-                                <div class="user-detail-list">
+                                <div class="customer-detail-list">
                                     <div>
                                         <a class="password-modal-open" data-id={{ $customer->id }}
                                             data-name={{ $customer->name }}>
@@ -155,7 +155,7 @@
                 return false;
             });
             // 詳細開く
-            $('.user-detail-show').on('click', function() {
+            $('.customer-detail-show').on('click', function() {
                 $(this).next().show();
                 setTimeout(() => {
                     // 別のクリックイベントで同時に発火されるのを防止

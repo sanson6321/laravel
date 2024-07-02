@@ -18,10 +18,10 @@ return new class extends Migration
             $table->timestamp('updated_at')->nullable(true)->comment('更新日時');
             $table->string('updated_name')->length(100)->nullable(true)->comment('更新者名');
             $table->integer('updated_no')->default(0)->comment('更新番号');
-            // $table->timestamp('deleted_at')->nullable(true)->comment('削除日時');
+            $table->timestamp('deleted_at')->nullable(true)->comment('削除日時');
             $table->string('name')->length(100)->comment('名前');
             $table->string('post_code')->length(10)->comment('郵便番号');
-            $table->smallInteger('prefecture')->comment('住所');
+            $table->smallInteger('prefecture')->comment('都道府県');
             $table->string('address')->length(200)->comment('住所');
             $table->string('address_sub')->length(200)->nullable(true)->comment('住所サブ');
             $table->smallInteger('gender')->comment('性別');

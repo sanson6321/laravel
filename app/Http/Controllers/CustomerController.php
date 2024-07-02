@@ -40,7 +40,7 @@ class CustomerController extends Controller
         $data = [
             'customer' => $customer,
         ];
-        return view('user.edit', $data);
+        return view('customer.edit', $data);
     }
 
     public function upsert(Request $request)
@@ -49,8 +49,12 @@ class CustomerController extends Controller
             'id' => '',
             'updated_no' => '',
             'name' => 'required',
-            'email' => 'required',
-            'password' => '',
+            'post_code' => 'required|max:10',
+            'prefecture' => 'required',
+            'address' => 'required|max:200',
+            'address_sub' => 'max:200',
+            'gender' => 'required',
+            'note' => '',
         ]);
 
         DB::beginTransaction();

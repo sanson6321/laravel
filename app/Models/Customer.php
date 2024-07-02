@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Customer extends BaseModel
 {
+    use SoftDeletes;
+
     protected $table = 'customers';
 
     protected $tableName = '顧客';
@@ -14,7 +18,7 @@ class Customer extends BaseModel
         'updated_at',
         'updated_name',
         'updated_no',
-        // 'deleted_at',
+        'deleted_at',
         'name',
         'post_code',
         'prefecture',

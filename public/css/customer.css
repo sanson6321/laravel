@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+.customer-table {
+    position: relative;
+    padding: 2rem;
+    background: var(--color-white);
+    border-radius: 0.5rem;
+}
+
+.customer-create {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 2rem;
+}
+
+.customer-detail {
+    display: flex;
+    position: relative;
+}
+.customer-detail-show {
+    margin-left: auto;
+    padding: 0 1rem;
+}
+.customer-detail-list {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--color-white);
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    z-index: 2;
+}
+.customer-detail-list > div {
+    display: flex;
+    flex-direction: column;
+}
+.customer-detail-list a {
+    white-space: nowrap;
+    padding: 0.25rem 1rem;
+}
+.customer-detail-list a:hover {
+    background: var(--color-lightgray);
+}
+
+.form-search {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+.form-search > div {
+    width: 250px;
+}
+.form-search > button {
+    margin-top: auto;
+}
+
+a.modal-open {
+    color: var(--color-blue);
+    text-decoration: underline;
+}
+
+.form-group {
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.form-group button {
+    margin-top: 1rem;
+    margin-left: auto;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}

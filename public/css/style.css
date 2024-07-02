@@ -55,12 +55,21 @@ select {
     border-radius: 0.25rem;
     box-sizing: border-box;
 }
+textarea {
+    width: 100%;
+    line-height: 1rem;
+    padding: 0.5rem;
+    border: 1px solid var(--color-gray);
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+}
 input:disabled,
 select:disabled {
     background: var(--color-gray);
 }
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
     outline-color: var(--color-blue);
 }
 input.form-error,
